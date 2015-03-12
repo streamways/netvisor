@@ -15,9 +15,11 @@ class SalesInvoice extends Root
     private $salesInvoiceDate;
     private $salesInvoiceAmount;
     private $salesInvoiceStatus;
+	private $salesinvoiceyourreference;
+	private $salesinvoiceprivatecomment;
     private $invoicingCustomerIdentifier;
     private $paymentTermNetDays;
-
+	
     /**
      * @XmlList(entry = "invoiceline")
      */
@@ -51,6 +53,22 @@ class SalesInvoice extends Root
     {
         $this->invoiceLines[] = new WrapperElement('salesinvoiceproductline', $line);
     }
+
+	/**
+	 * @param string $salesinvoiceprivatecomment
+	 */
+	public function setSalesinvoiceprivatecomment($salesinvoiceprivatecomment) {
+		$this->salesinvoiceprivatecomment = $salesinvoiceprivatecomment;
+	}
+
+	/**
+	 * @param string $salesinvoiceyourreference
+	 */
+	public function setSalesinvoiceyourreference($salesinvoiceyourreference) {
+		$this->salesinvoiceyourreference = $salesinvoiceyourreference;
+	}
+
+
 
     public function getDtdPath()
     {
