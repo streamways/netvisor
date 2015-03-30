@@ -15,6 +15,7 @@ class SalesInvoice extends Root
     private $salesInvoiceDate;
     private $salesInvoiceAmount;
     private $salesInvoiceStatus;
+	private $salesinvoicefreetextbeforelines;
 	private $salesinvoiceyourreference;
 	private $salesinvoiceprivatecomment;
     private $invoicingCustomerIdentifier;
@@ -68,7 +69,12 @@ class SalesInvoice extends Root
 		$this->salesinvoiceyourreference = $salesinvoiceyourreference;
 	}
 
-
+	/**
+	 * @param mixed $salesinvoicefreetextbeforelines
+	 */
+	public function setSalesinvoicefreetextbeforelines($salesinvoicefreetextbeforelines) {
+		$this->salesinvoicefreetextbeforelines = $salesinvoicefreetextbeforelines;
+	}
 
     public function getDtdPath()
     {
