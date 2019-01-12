@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by Seapoint.
- * User: juhni
- * Date: 3/10/15
- * Time: 5:38 PM
- */
 
 namespace Xi\Netvisor\Resource\Xml;
 
@@ -56,6 +50,4 @@ class CustomerDeliveryDetails
 	public function setDeliverystreetaddress($deliverystreetaddress) {
 		$this->deliverystreetaddress = $deliverystreetaddress;
 	}
-
-
 }

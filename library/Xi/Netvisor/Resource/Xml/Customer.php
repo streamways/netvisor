@@ -9,24 +9,20 @@ use Xi\Netvisor\Resource\Xml\Component\WrapperElement;
 
 class Customer extends Root
 {
-
-	/**
-	 * @var $customerbaseinformation CustomerBaseinformation
-	 */
+	/** @var $customerbaseinformation CustomerBaseinformation */
 	private $customerbaseinformation;
-	/**
-	 * @var $customerfinvoicedetails CustomerFinvoiceDetails
-	 */
+
+	/** @var $customerfinvoicedetails CustomerFinvoiceDetails */
     private $customerfinvoicedetails;
-	/**
-	 * @var $customerdeliverydetails CustomerDeliveryDetails
-	 */
+
+    /** @var $customerdeliverydetails CustomerDeliveryDetails */
     private $customerdeliverydetails;
-	/**
-	 * @var $customercontactdetails CustomerContactDetails
-	 */
+
+	/** @var $customercontactdetails CustomerContactDetails */
     private $customercontactdetails;
 
+    /** @var CustomerAdditionalInformation */
+    private $customerAdditionalInformation;
 
     public function __construct() {
 
@@ -59,6 +55,13 @@ class Customer extends Root
 	public function setCustomerfinvoicedetails(CustomerFinvoiceDetails $customerfinvoicedetails) {
 		$this->customerfinvoicedetails = $customerfinvoicedetails;
 	}
+
+    /**
+     * @param CustomerAdditionalInformation $customerAdditionalInformation
+     */
+	public function setCustomerAdditionalInformation(CustomerAdditionalInformation $customerAdditionalInformation) {
+	    $this->customerAdditionalInformation = $customerAdditionalInformation;
+    }
 
     public function getDtdPath()
     {
