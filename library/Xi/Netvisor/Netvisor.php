@@ -167,6 +167,48 @@ class Netvisor
     }
 
     /**
+     * List purchaseinvoices, optionally filtered by start and end date for invoice
+     *
+     * @param DateTime|null $beginDate
+     * @param DateTime|null $endDate
+     * @return null|string
+     */
+    public function getPurchaseInvoiceList(DateTime $beginDate = null, DateTime $endDate = null)
+    {
+        $params = [];
+
+        if ($beginDate !== null) {
+            $params["begininvoicedate"] = $beginDate->format("Y-m-d");
+        }
+
+        if ($endDate !== null) {
+            $params["endinvoicedate"] = $endDate->format("Y-m-d");
+        }
+
+        return $this->get(
+            'purchaseinvoiceliset',
+            $params
+        );
+    }
+
+    /**
+     * Get details for a purchaseinvoice identified by Netvisor Id.
+     *
+     * @param $netVisorKey
+     * @return null|string
+     */
+    public function getPurchaseInvoice($netVisorKey)
+    {
+        return $this->get(
+            'getpurchaseinvoice',
+            [
+                'netvisorkey' => $netVisorKey
+            ]
+        );
+    }
+
+
+    /**
      * @param string  $service
      * @param array   $params
      * @return null|string

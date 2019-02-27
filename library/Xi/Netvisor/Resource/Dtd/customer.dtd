@@ -1,67 +1,13 @@
 <!DOCTYPE root [
 <!ELEMENT root (customer)>
-<!ELEMENT customer (customerbaseinformation, customerfinvoicedetails?, customerdeliverydetails?, customercontactdetails?, customeradditionalinformation?)>
-<!ELEMENT customerbaseinformation (internalidentifier?, externalidentifier?, name?, nameextension?, streetaddress?, additionaladdressline?, city?, postnumber?, country?, customergroupname?, phonenumber?, faxnumber?, email?, homepageuri?, isactive?)>
-<!ELEMENT customerfinvoicedetails (finvoiceaddress?, finvoiceroutercode?)>
-<!ELEMENT customerdeliverydetails (deliveryname?, deliverystreetaddress?, deliverycity?, deliverypostnumber?, deliverycountry?)>
-<!ELEMENT customercontactdetails (contactname?, contactperson?, contactpersonemail?, contactpersonphone?)>
-<!ELEMENT customeradditionalinformation (comment?, customerreferencenumber?, directdebitbankaccount?, invoicinglanguage?, invoiceprintchannelformat?, defaultsalesperson?)>
-<!ELEMENT defaultsalesperson (salespersonid)>
-
-<!ELEMENT internalidentifier (#PCDATA)>
-<!ELEMENT externalidentifier (#PCDATA)>
-<!ELEMENT name (#PCDATA)>
-<!ELEMENT nameextension (#PCDATA)>
-<!ELEMENT city (#PCDATA)>
-<!ELEMENT streetaddress (#PCDATA)>
-<!ELEMENT additionaladdressline (#PCDATA)>
-<!ELEMENT postnumber (#PCDATA)>
-<!ELEMENT country (#PCDATA)>
-	<!ATTLIST country type CDATA "ISO-3166">	
-
-<!ELEMENT customergroupname (#PCDATA)>	
-<!ELEMENT phonenumber (#PCDATA)>
-<!ELEMENT faxnumber (#PCDATA)>
-<!ELEMENT email (#PCDATA)>
-<!ELEMENT homepageuri (#PCDATA)>
-<!ELEMENT isactive (#PCDATA)>
-
-
-<!ELEMENT finvoiceaddress (#PCDATA)>
-<!ELEMENT finvoiceroutercode (#PCDATA)>
-
-<!ELEMENT deliveryname (#PCDATA)>
-<!ELEMENT deliverystreetaddress (#PCDATA)>
-<!ELEMENT deliverycity (#PCDATA)>
-<!ELEMENT deliverypostnumber (#PCDATA)>
-<!ELEMENT deliverycountry (#PCDATA)>
-	<!ATTLIST deliverycountry type CDATA "ISO-3166">	
-
-<!ELEMENT contactname (#PCDATA)>
-<!ELEMENT contactperson (#PCDATA)>
-<!ELEMENT contactpersonemail (#PCDATA)>
-<!ELEMENT contactpersonphone (#PCDATA)>
-
-<!ELEMENT comment (#PCDATA)>
-<!ELEMENT customerreferencenumber (#PCDATA)>
-<!ELEMENT directdebitbankaccount (#PCDATA)>
-<!ELEMENT invoicinglanguage (#PCDATA)>
-  <!ATTLIST invoicinglanguage type CDATA "ISO-3166">
-<!ELEMENT invoiceprintchannelformat (#PCDATA)>
-  <!ATTLIST invoiceprintchannelformat type (netvisor) #REQUIRED>
-<!ELEMENT salespersonid (#PCDATA)>
-  <!ATTLIST salespersonid type (netvisor) #REQUIRED>
-]>
-||||||| merged common ancestors
-=======
-<!DOCTYPE root [
-<!ELEMENT root (customer)>
-<!ELEMENT customer (customerbaseinformation, customerfinvoicedetails?, customerdeliverydetails?, customercontactdetails?, customeradditionalinformation?)>
+<!ELEMENT customer (customerbaseinformation, customerfinvoicedetails?, customermaventaedidetails?, customerdeliverydetails?, customercontactdetails?, customeradditionalinformation?)>
 <!ELEMENT customerbaseinformation (internalidentifier?, externalidentifier?, organizationunitnumber?, name?, nameextension?, streetaddress?, additionaladdressline?, city?, postnumber?, country?, customergroupname?, phonenumber?, faxnumber?, email?, homepageuri?, isactive?, isprivatecustomer?, emailinvoicingaddress?)>
 <!ELEMENT customerfinvoicedetails (finvoiceaddress?, finvoiceroutercode?)>
+<!ELEMENT customermaventaedidetails (maventaedichannel, maventaedicustomeridentifier?)>
 <!ELEMENT customerdeliverydetails (deliveryname?, deliverystreetaddress?, deliverycity?, deliverypostnumber?, deliverycountry?)>
 <!ELEMENT customercontactdetails (contactname?, contactperson?, contactpersonemail?, contactpersonphone?)>
 <!ELEMENT customeradditionalinformation (comment?, customeragreementidentifier?, customerreferencenumber?, directdebitbankaccount?, invoicinglanguage?, invoiceprintchannelformat?, yourdefaultreference?, defaulttextbeforeinvoicelines?, defaulttextafterinvoicelines?,  defaultsalesperson?)>
+
 <!ELEMENT defaultsalesperson (salespersonid)>
 
 <!ELEMENT internalidentifier (#PCDATA)>
@@ -85,9 +31,11 @@
 <!ELEMENT isprivatecustomer (#PCDATA)>
 <!ELEMENT emailinvoicingaddress (#PCDATA)>
 
-
 <!ELEMENT finvoiceaddress (#PCDATA)>
 <!ELEMENT finvoiceroutercode (#PCDATA)>
+
+<!ELEMENT maventaedichannel (#PCDATA)>
+<!ELEMENT maventaedicustomeridentifier (#PCDATA)>
 
 <!ELEMENT deliveryname (#PCDATA)>
 <!ELEMENT deliverystreetaddress (#PCDATA)>
@@ -103,6 +51,7 @@
 
 <!ELEMENT comment (#PCDATA)>
 <!ELEMENT customeragreementidentifier (#PCDATA)>
+
 <!ELEMENT customerreferencenumber (#PCDATA)>
 <!ELEMENT directdebitbankaccount (#PCDATA)>
 <!ELEMENT invoicinglanguage (#PCDATA)>
