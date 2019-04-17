@@ -186,7 +186,7 @@ class Netvisor
         }
 
         return $this->get(
-            'purchaseinvoiceliset',
+            'purchaseinvoicelist',
             $params
         );
     }
