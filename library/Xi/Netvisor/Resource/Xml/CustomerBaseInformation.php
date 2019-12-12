@@ -7,31 +7,31 @@ use Xi\Netvisor\Resource\Xml\Component\AttributeElement;
 
 class CustomerBaseInformation
 {
-
 	private $internalidentifier;
-    private $externalidentifier;
-    private $name;
-    private $nameextension;
-    private $streetaddress;
+	private $externalidentifier;
+	private $name;
+	private $nameextension;
+	private $streetaddress;
 	private $additionaladdressLine;
 	private $city;
 	private $postnumber;
 	private $country;
 	private $email;
-	private $isactive;
+	private $isActive;
+	private $isPrivateCustomer;
 
 	/**
 	 * @param string $name
 	 */
-    public function __construct($name) {
-    	$this->name = $name;
+	public function __construct($name) {
+		$this->name = $name;
 	}
-	
-	public function setInternalidentifier($internalidentifier) {
+
+	public function setInternalIdentifier($internalidentifier) {
 		$this->internalidentifier = $internalidentifier;
 	}
-	
-	public function setExternalidentifier($externalidentifier) {
+
+	public function setExternalIdentifier($externalidentifier) {
 		$this->externalidentifier = $externalidentifier;
 	}
 
@@ -67,7 +67,7 @@ class CustomerBaseInformation
 	 * @param mixed $isactive
 	 */
 	public function setIsActive($isActive) {
-		$this->isactive = $isActive;
+		$this->isActive = $isActive;
 	}
 
 	/**
@@ -89,5 +89,12 @@ class CustomerBaseInformation
 	 */
 	public function setStreetAddress($streetAddress) {
 		$this->streetaddress = $streetAddress;
+	}
+
+	/**
+	 * @param mixed $isPrivateCustomer
+	 */
+	public function setIsPrivateCustomer($isPrivateCustomer) {
+		$this->isPrivateCustomer = $isPrivateCustomer;
 	}
 }
