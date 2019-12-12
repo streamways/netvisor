@@ -99,7 +99,7 @@ class Netvisor
 	 */
 	public function sendCustomer(Customer $customer, bool $add)
 	{
-		return $this->requestWithBody($customer, 'customer', ['method' => $add ? 'add' : 'edit', $add ? null : $customer->netvisorkey]);
+		return $this->requestWithBody($customer, 'customer', ['method' => $add ? 'add' : 'edit', 'id' => $add ? null : $customer->netvisorkey]);
 	}
 
 	/**
@@ -109,7 +109,7 @@ class Netvisor
 	 */
 	public function sendProduct(Product $product, bool $add)
 	{
-		return $this->requestWithBody($product, 'product', ['method' => $add ? 'add' : 'edit', $add ? null : $product->netvisorKey]);
+		return $this->requestWithBody($product, 'product', ['method' => $add ? 'add' : 'edit', 'id' => $add ? null : $product->netvisorKey]);
 	}
 
 	/**
