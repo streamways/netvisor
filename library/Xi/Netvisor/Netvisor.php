@@ -27,6 +27,7 @@ use Xi\Netvisor\Serializer\Naming\LowercaseNamingStrategy;
  * @author   Henri Vesala    <henri.vesala@gmail.fi>
  * @author   Petri Koivula   <petri.koivula@iki.fi>
  * @author   Artur Gajewski  <info@arturgajewski.com>
+ * @author   Joel Hietanen   <joel.hietanen@nyholmsolutions.fi>
  */
 class Netvisor
 {

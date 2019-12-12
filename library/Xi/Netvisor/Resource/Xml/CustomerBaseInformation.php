@@ -5,7 +5,7 @@ namespace Xi\Netvisor\Resource\Xml;
 use Xi\Netvisor\Resource\Xml\Component\WrapperElement;
 use Xi\Netvisor\Resource\Xml\Component\AttributeElement;
 
-class CustomerBaseinformation
+class CustomerBaseInformation
 {
 
 	private $internalidentifier;
@@ -59,35 +59,35 @@ class CustomerBaseinformation
 	/**
 	 * @param mixed $email
 	 */
-	public function setemail($email) {
+	public function setEmail($email) {
 		$this->email = $email;
 	}
 
 	/**
 	 * @param mixed $isactive
 	 */
-	public function setIsactive($isActive) {
+	public function setIsActive($isActive) {
 		$this->isactive = $isActive;
 	}
 
 	/**
 	 * @param mixed $nameextension
 	 */
-	public function setNameextension($nameExtension) {
+	public function setNameExtension($nameExtension) {
 		$this->nameextension = $nameExtension;
 	}
 
 	/**
 	 * @param mixed $postnumber
 	 */
-	public function setPostnumber($postnumber) {
+	public function setPostNumber($postnumber) {
 		$this->postnumber = $postnumber;
 	}
 
 	/**
 	 * @param mixed $streetaddress
 	 */
-	public function setStreetaddress($streetAddress) {
+	public function setStreetAddress($streetAddress) {
 		$this->streetaddress = $streetAddress;
 	}
 }
