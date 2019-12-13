@@ -68,37 +68,37 @@ class SalesInvoice extends Root
 
     private $customTags;
 
-    /**
-     * @param \DateTime $salesInvoiceDate
-     * @param string $salesInvoiceAmount
-     * @param string $salesInvoiceStatus
-     * @param string $invoicingCustomerIdentifier
-     * @param int $paymentTermNetDays
-     * @param array $additionalFields
-     */
-    public function __construct(
-        \DateTime $salesInvoiceDate,
-        $salesInvoiceAmount,
-        $salesInvoiceStatus,
-        $invoicingCustomerIdentifier,
-        $paymentTermNetDays,
-        array $additionalFields = []
-    ) {
-        $this->salesInvoiceDate = $salesInvoiceDate->format('Y-m-d');
-        $this->salesInvoiceAmount = $salesInvoiceAmount;
-        $this->salesInvoiceStatus = new AttributeElement($salesInvoiceStatus, array('type' => 'netvisor'));
-        $this->invoicingCustomerIdentifier = new AttributeElement($invoicingCustomerIdentifier, array('type' => 'netvisor')); // TODO: Type can be netvisor/customer.
-        $this->paymentTermNetDays = $paymentTermNetDays;
-        $this->secondName = array_key_exists('secondName', $additionalFields) ? new AttributeElement($additionalFields['secondName'], ['type' => 'netvisor']) : null;
+	/**
+	 * @param \DateTime $salesInvoiceDate
+	 * @param string|null $salesInvoiceAmount
+	 * @param string $salesInvoiceStatus
+	 * @param string $invoicingCustomerIdentifier
+	 * @param int $paymentTermNetDays
+	 * @param array $additionalFields
+	 */
+	public function __construct(
+		\DateTime $salesInvoiceDate,
+		?string $salesInvoiceAmount,
+		$salesInvoiceStatus,
+		$invoicingCustomerIdentifier,
+		$paymentTermNetDays,
+		array $additionalFields = []
+	) {
+		$this->salesInvoiceDate = $salesInvoiceDate->format('Y-m-d');
+		$this->salesInvoiceAmount = new AttributeElement($salesInvoiceAmount, ["iso4217currencycode" => "EUR"]);
+		$this->salesInvoiceStatus = new AttributeElement($salesInvoiceStatus, array('type' => 'netvisor'));
+		$this->invoicingCustomerIdentifier = new AttributeElement($invoicingCustomerIdentifier, array('type' => 'netvisor')); // TODO: Type can be netvisor/customer.
+		$this->paymentTermNetDays = $paymentTermNetDays;
+		$this->secondName = array_key_exists('secondName', $additionalFields) ? new AttributeElement($additionalFields['secondName'], ['type' => 'netvisor']) : null;
 
-        foreach ($additionalFields as $key => $value) {
-            if (in_array($key, ['secondName'])) {
-                continue;
-            }
+		foreach ($additionalFields as $key => $value) {
+			if (in_array($key, ['secondName'])) {
+				continue;
+			}
 
-            $this->$key = $value;
-        }
-    }
+			$this->$key = $value;
+		}
+	}
 
     /**
      * @param SalesInvoiceProductLine $line
