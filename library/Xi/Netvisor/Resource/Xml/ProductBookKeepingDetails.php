@@ -9,13 +9,13 @@ namespace Xi\Netvisor\Resource\Xml;
  */
 class ProductBookKeepingDetails
 {
-	private $defaultVatPercent;
+	private $defaultVatPercentage;
 
 	/**
-	 * @param $defaultVatPercent
+	 * @param $defaultVatPercentage
 	 */
-	public function setDefaultVatPercent($defaultVatPercent)
+	public function setDefaultVatPercentage($defaultVatPercentage)
 	{
-		$this->defaultVatPercent = $defaultVatPercent;
+		$this->defaultVatPercentage = $defaultVatPercentage;
 	}
 }

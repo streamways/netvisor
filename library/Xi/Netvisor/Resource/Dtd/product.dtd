@@ -1,3 +1,4 @@
+<!DOCTYPE root [
 <!ELEMENT root (product)>
 <!ELEMENT product (productbaseinformation, productbookkeepingdetails?, productadditionalinformation?)>
 <!ELEMENT productbaseinformation (productcode?, productgroup, name, description?, unitprice, unit?, unitweight?, kaukevaproductcode?, purchaseprice?, tariffheading?, comissionpercentage?, isactive, issalesproduct, inventoryenabled?, countryoforigin?)>
@@ -32,3 +33,4 @@
 <!ELEMENT packagewidth (#PCDATA)>
 <!ELEMENT packageheight (#PCDATA)>
 <!ELEMENT packagelength (#PCDATA)>
+]>
