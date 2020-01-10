@@ -51,4 +51,11 @@ class SalesInvoiceProductLine
             $this->$key = $value;
         }
     }
+
+	/**
+	 * @param mixed $salesInvoiceProductLineFreeText
+	 */
+	public function setSalesInvoiceProductLineFreeText($salesInvoiceProductLineFreeText) {
+		$this->salesInvoiceProductLineFreeText = $salesInvoiceProductLineFreeText;
+	}
 }
