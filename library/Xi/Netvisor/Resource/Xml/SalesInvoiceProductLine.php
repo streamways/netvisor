@@ -28,7 +28,7 @@ class SalesInvoiceProductLine
     /**
      * @param string $productIdentifier
      * @param string $productName
-     * @param string $productUnitPrice
+     * @param array $productUnitPrice
      * @param string $productVatPercentage
      * @param int $salesInvoiceProductLineQuantity
      * @param array $additionalFields
@@ -36,21 +36,21 @@ class SalesInvoiceProductLine
     public function __construct(
         $productIdentifier,
         $productName,
-        $productUnitPrice,
+        array $productUnitPrice,
         $productVatPercentage,
         $salesInvoiceProductLineQuantity,
         array $additionalFields = []
     ) {
         $this->productIdentifier = new AttributeElement($productIdentifier, array('type' => 'netvisor')); // TODO: netvisor/customer.
         $this->productName = substr($productName, 0, 50);
-        $this->productUnitPrice = new AttributeElement($productUnitPrice, array('type' => 'net')); // TODO: net/gross.
+        $this->productUnitPrice = new AttributeElement($productUnitPrice["price"], array('type' => $productUnitPrice["type"]));
         $this->productVatPercentage = new AttributeElement($productVatPercentage, array('vatcode' => 'KOMY')); // TODO: different values.
         $this->salesInvoiceProductLineQuantity = $salesInvoiceProductLineQuantity;
 
-        foreach ($additionalFields as $key => $value) {
-            $this->$key = $value;
-        }
-    }
+		foreach ($additionalFields as $key => $value) {
+			$this->$key = $value;
+		}
+	}
 
 	/**
 	 * @param mixed $salesInvoiceProductLineFreeText

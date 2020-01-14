@@ -19,7 +19,7 @@ class SalesInvoiceProductLineTest extends XmlTestCase
         $this->invoiceProductLine = new SalesInvoiceProductLine(
             '100',
             'Product name, which is longer than the limit of 50 characters',
-            '1,23',
+            ["price" => '1,23', "type" => "net"],
             '24',
             '5',
             [
