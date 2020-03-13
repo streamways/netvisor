@@ -42,7 +42,7 @@ class SalesInvoiceProductLine
         array $additionalFields = []
     ) {
         $this->productIdentifier = new AttributeElement($productIdentifier, array('type' => 'netvisor')); // TODO: netvisor/customer.
-        $this->productName = substr($productName, 0, 50);
+        $this->productName = substr($productName, 0, 200);
         $this->productUnitPrice = new AttributeElement($productUnitPrice["price"], array('type' => $productUnitPrice["type"]));
         $this->productVatPercentage = new AttributeElement($productVatPercentage, array('vatcode' => 'KOMY')); // TODO: different values.
         $this->salesInvoiceProductLineQuantity = $salesInvoiceProductLineQuantity;

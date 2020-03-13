@@ -5,7 +5,7 @@ namespace Xi\Netvisor\Component;
 use JMS\Serializer\Metadata\PropertyMetadata;
 use Xi\Netvisor\Serializer\Naming\LowercaseNamingStrategy;
 
-class LowercaseNamingStrategyTest extends \PHPUnit_Framework_TestCase
+class LowercaseNamingStrategyTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test

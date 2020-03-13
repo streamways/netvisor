@@ -18,7 +18,9 @@ class SalesInvoiceProductLineTest extends XmlTestCase
 
         $this->invoiceProductLine = new SalesInvoiceProductLine(
             '100',
-            'Product name, which is longer than the limit of 50 characters',
+            'Product name, which is longer than the limit of 200 characters. ' .
+                        'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii' .
+                        'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii',
             ["price" => '1,23', "type" => "net"],
             '24',
             '5',
@@ -41,8 +43,12 @@ class SalesInvoiceProductLineTest extends XmlTestCase
         $this->assertXmlContainsTagWithValue('productidentifier', '100', $xml);
         $this->assertXmlContainsTagWithAttributes('productidentifier', array('type' => 'netvisor'), $xml);
 
-        $this->assertXmlContainsTagWithValue('productname', 'Product name, which is longer than the limit of 50', $xml);
-        $this->assertNotContains('Product name, which is longer than the limit of 50 characters', $xml);
+        $this->assertXmlContainsTagWithValue('productname', 'Product name, which is longer than the limit of 200 characters. ' .
+                                        'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii' .
+                                        'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii', $xml);
+        $this->assertNotContains('Product name, which is longer than the limit of 200 characters. ' .
+                                        'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii' .
+                                        'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii', $xml);
 
         $this->assertXmlContainsTagWithValue('productunitprice', '1,23', $xml);
         $this->assertXmlContainsTagWithAttributes('productunitprice', array('type' => 'net'), $xml);

@@ -19,21 +19,17 @@ class CustomerTest extends XmlTestCase
     {
         parent::setUp();
 
-        $this->customer = new Customer(
-            new CustomerBaseInformation(
-                '1234567-1',
-                'Testi Oy',
-                'Testikatu 1',
-                'Helsinki',
-                '00240',
-                'FI',
-                null
-            ),
-            null,
-            new CustomerAdditionalInformation(
-                'SV'
-            )
-        );
+        $this->customer = new Customer();
+        $customerBaseInformation = new CustomerBaseInformation('Testi Oy');
+        $customerBaseInformation->setExternalIdentifier('1234567-1');
+        $customerBaseInformation->setStreetAddress('Testikatu 1');
+        $customerBaseInformation->setCity('Helsinki');
+        $customerBaseInformation->setPostNumber('00240');
+        $customerBaseInformation->setCountry('FI');
+        $this->customer->setCustomerbaseinformation($customerBaseInformation);
+        $this->customer->setCustomerAdditionalInformation(new CustomerAdditionalInformation(
+            'SV'
+        ));
     }
 
     /**
