@@ -250,6 +250,21 @@ class Netvisor
 		);
 	}
 
+	/**
+	 * Retrieve product inventory for each warehouse
+	 *
+	 * @param array $params
+	 *
+	 * @return string|null
+	 */
+	public function inventoryByWarehouse(array $params = []): ?string
+	{
+		return $this->get(
+			"inventorybywarehouse",
+			$params
+		);
+	}
+
 
 	/**
 	 * @param string $service
