@@ -172,6 +172,25 @@ class Netvisor
 	}
 
 	/**
+	 * List products that have changed since given date.
+	 *
+	 * Giving a keyword would override the changed since parameter.
+	 *
+	 * @param DateTime $changedSince
+	 *
+	 * @return null|string
+	 */
+	public function getProductsChangedSince(DateTime $changedSince)
+	{
+		return $this->get(
+			'productlist',
+			[
+				'changedsince' => $changedSince->format('Y-m-d'),
+			]
+		);
+	}
+
+	/**
 	 * Get details for a customer identified by Netvisor id.
 	 *
 	 * @param int $id
