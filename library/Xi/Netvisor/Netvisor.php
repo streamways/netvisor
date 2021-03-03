@@ -265,6 +265,51 @@ class Netvisor
 		);
 	}
 
+	/**
+	 * List sales invoices/orders
+	 *
+	 * @param array $params
+	 *
+	 * @return string|null
+	 */
+	public function salesInvoiceList(array $params = []): ?string
+	{
+		return $this->get(
+			"salesinvoicelist",
+			$params
+		);
+	}
+
+	/**
+	 * Get details for a sales invoice identified by Netvisor key.
+	 *
+	 * @param array $params
+	 *
+	 * @return string|null
+	 */
+	public function getSalesInvoice(array $params = []): ?string
+	{
+		return $this->get(
+			"getsalesinvoice",
+			$params
+		);
+	}
+
+	/**
+	 * Get details for an order identified by Netvisor key.
+	 *
+	 * @param array $params
+	 *
+	 * @return string|null
+	 */
+	public function getOrder(array $params = []): ?string
+	{
+		return $this->get(
+			"getorder",
+			$params
+		);
+	}
+
 
 	/**
 	 * @param string $service
