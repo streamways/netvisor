@@ -84,13 +84,23 @@ class Netvisor
 
 	/**
 	 * @param SalesInvoice $invoice
-	 * @param String       $language
+	 * @param bool         $add
+	 * @param string|null  $language
 	 *
-	 * @return null|string
+	 * @return string|null
+	 * @throws \Xi\Netvisor\Exception\NetvisorException
 	 */
-	public function sendInvoice(SalesInvoice $invoice, $language = null)
+	public function sendInvoice(SalesInvoice $invoice, bool $add = true, string $language = null): ?string
 	{
-		return $this->requestWithBody($invoice, 'salesinvoice', [], $language);
+		return $this->requestWithBody(
+			$invoice,
+			"salesinvoice",
+			[
+				"method" => $add ? "add" : "edit",
+				"id" => $add ? null : $invoice->netvisorkey
+			],
+			$language
+		);
 	}
 
 	/**
