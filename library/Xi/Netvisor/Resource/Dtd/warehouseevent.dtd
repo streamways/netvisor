@@ -1,0 +1,21 @@
+﻿<!ELEMENT root (warehouseevent)>
+<!ELEMENT warehouseevent (description?, reference, deliverymethod?, distributer?, warehouseeventlines)>
+<!ELEMENT warehouseeventlines (warehouseeventline+)>
+<!ELEMENT warehouseeventline (eventtype, product, inventoryplace?, description?, quantity, unitprice, valuedate, status)>
+
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT reference (#PCDATA)>
+<!ELEMENT deliverymethod (#PCDATA)>
+<!ELEMENT distributer (#PCDATA)>
+<!ATTLIST distributer type (netvisor|customer) #IMPLIED>
+
+<!ELEMENT eventtype (#PCDATA)>
+  <!ATTLIST eventtype type (customer) #IMPLIED>
+<!ELEMENT product (#PCDATA)>
+  <!ATTLIST product type (netvisor|customer) #IMPLIED>
+<!ELEMENT inventoryplace (#PCDATA)>
+<!ELEMENT quantity (#PCDATA)>
+<!ELEMENT unitprice (#PCDATA)>
+<!ELEMENT valuedate (#PCDATA)>
+  <!ATTLIST valuedate format CDATA #FIXED "ansi">
+<!ELEMENT status (#PCDATA)>
