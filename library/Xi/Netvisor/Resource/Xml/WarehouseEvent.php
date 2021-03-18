@@ -2,6 +2,7 @@
 
 namespace Xi\Netvisor\Resource\Xml;
 
+use JMS\Serializer\Annotation\XmlList;
 use Xi\Netvisor\Resource\Xml\Component\AttributeElement;
 use Xi\Netvisor\Resource\Xml\Component\Root;
 
@@ -16,6 +17,10 @@ class WarehouseEvent extends Root
 	private $reference;
 	private $deliveryMethod;
 	private $distributer;
+
+	/**
+	 * @XmlList(entry = "warehouseeventline")
+	 */
 	private $warehouseEventLines = [];
 
 	/**

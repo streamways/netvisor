@@ -1,4 +1,4 @@
-﻿<!ELEMENT root (warehouseevent)>
+<!ELEMENT root (warehouseevent)>
 <!ELEMENT warehouseevent (description?, reference, deliverymethod?, distributer?, warehouseeventlines)>
 <!ELEMENT warehouseeventlines (warehouseeventline+)>
 <!ELEMENT warehouseeventline (eventtype, product, inventoryplace?, description?, quantity, unitprice, valuedate, status)>
