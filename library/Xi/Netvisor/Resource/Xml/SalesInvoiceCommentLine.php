@@ -23,9 +23,13 @@ class SalesInvoiceCommentLine
 
 	/**
 	 * @param string $comment
+	 *
+	 * @return $this
 	 */
-	public function setComment(string $comment)
+	public function setComment(string $comment): self
 	{
 		$this->comment = $comment;
+
+		return $this;
 	}
 }

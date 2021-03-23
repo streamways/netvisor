@@ -19,6 +19,7 @@ class SalesInvoiceProductLine
     private $salesInvoiceProductLineSum;
     private $accountingAccountSuggestion;
     private $skipAccrual;
+    private $productUnitName;
 
     /**
      * @XmlList(inline = true, entry = "dimension")
@@ -57,5 +58,17 @@ class SalesInvoiceProductLine
 	 */
 	public function setSalesInvoiceProductLineFreeText($salesInvoiceProductLineFreeText) {
 		$this->salesInvoiceProductLineFreeText = $salesInvoiceProductLineFreeText;
+	}
+
+	/**
+	 * @param string $productUnitName
+	 *
+	 * @return $this
+	 */
+	public function setProductUnitName(string $productUnitName): self
+	{
+		$this->productUnitName = $productUnitName;
+
+		return $this;
 	}
 }
