@@ -109,6 +109,14 @@ class SalesInvoice extends Root
     }
 
 	/**
+	 * @param SalesInvoiceCommentLine $line
+	 */
+	public function addSalesInvoiceCommentLine(SalesInvoiceCommentLine $line)
+	{
+		$this->invoiceLines[] = new WrapperElement("salesinvoicecommentline", $line);
+	}
+
+	/**
 	 * @param string $salesinvoiceprivatecomment
 	 */
 	public function setSalesinvoiceprivatecomment($salesinvoiceprivatecomment) {
