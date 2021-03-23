@@ -117,6 +117,18 @@ class SalesInvoice extends Root
 	}
 
 	/**
+	 * @param int|string $salesInvoiceReferenceNumber
+	 *
+	 * @return $this
+	 */
+	public function setSalesInvoiceReferenceNumber($salesInvoiceReferenceNumber): self
+	{
+		$this->salesInvoiceReferenceNumber = $salesInvoiceReferenceNumber;
+
+		return $this;
+	}
+
+	/**
 	 * @param string $salesinvoiceprivatecomment
 	 */
 	public function setSalesinvoiceprivatecomment($salesinvoiceprivatecomment) {
