@@ -160,7 +160,7 @@ class SalesInvoice extends Root
 	 */
 	public function setSalesInvoiceDueDate(DateTimeInterface $salesInvoiceDueDate): self
 	{
-		$this->salesInvoiceNumber = $salesInvoiceDueDate;
+		$this->salesInvoiceNumber = $salesInvoiceDueDate->format("Y-m-d");
 
 		return $this;
 	}
