@@ -1,16 +1,17 @@
 <!DOCTYPE root [
 <!ELEMENT root (customer)>
-<!ELEMENT customer (customerbaseinformation, customerfinvoicedetails?, customermaventaedidetails?, customerdeliverydetails?, customercontactdetails?, customeradditionalinformation?)>
+<!ELEMENT customer (customerbaseinformation, customerfinvoicedetails?, customermaventaedidetails?, customerdeliverydetails?, customercontactdetails?, customeradditionalinformation?, customerdimensiondetails?)>
 <!ELEMENT customerbaseinformation (internalidentifier?, externalidentifier?, organizationunitnumber?, name?, nameextension?, streetaddress?, additionaladdressline?, city?, postnumber?, country?, customergroupname?, phonenumber?, faxnumber?, email?, homepageuri?, isactive?, isprivatecustomer?, emailinvoicingaddress?)>
 <!ELEMENT customerfinvoicedetails (finvoiceaddress?, finvoiceroutercode?)>
 <!ELEMENT customermaventaedidetails (maventaedichannel, maventaedicustomeridentifier?)>
 <!ELEMENT customerdeliverydetails (deliveryname?, deliverystreetaddress?, deliverycity?, deliverypostnumber?, deliverycountry?)>
 <!ELEMENT customercontactdetails (contactname?, contactperson?, contactpersonemail?, contactpersonphone?)>
-<!ELEMENT customeradditionalinformation (comment?, customeragreementidentifier?, customerreferencenumber?, directdebitbankaccount?, invoicinglanguage?, invoiceprintchannelformat?, yourdefaultreference?, defaulttextbeforeinvoicelines?, defaulttextafterinvoicelines?,  defaultsalesperson?)>
-
+<!ELEMENT customeradditionalinformation (comment?, customeragreementidentifier?, customerreferencenumber?, directdebitbankaccount?, invoicinglanguage?, invoiceprintchannelformat?, yourdefaultreference?, defaulttextbeforeinvoicelines?, defaulttextafterinvoicelines?,  defaultpaymentterm?,  defaultsalesperson?)>
 <!ELEMENT defaultsalesperson (salespersonid)>
+<!ELEMENT customerdimensiondetails (dimension*)>
 
 <!ELEMENT internalidentifier (#PCDATA)>
+<!ATTLIST internalidentifier type (automatic) #IMPLIED>
 <!ELEMENT externalidentifier (#PCDATA)>
 <!ELEMENT organizationunitnumber (#PCDATA)>
 <!ELEMENT name (#PCDATA)>
@@ -61,6 +62,12 @@
 <!ELEMENT yourdefaultreference (#PCDATA)>
 <!ELEMENT defaulttextbeforeinvoicelines (#PCDATA)>
 <!ELEMENT defaulttextafterinvoicelines (#PCDATA)>
+<!ELEMENT defaultpaymentterm (#PCDATA)>
+<!ATTLIST defaultpaymentterm type (netvisor|customer) #REQUIRED>
 <!ELEMENT salespersonid (#PCDATA)>
 <!ATTLIST salespersonid type (netvisor) #REQUIRED>
+<!ELEMENT dimension (dimensionname, dimensionitem)>
+<!ELEMENT dimensionname (#PCDATA)>
+<!ELEMENT dimensionitem (#PCDATA)>
+<!ATTLIST dimensionitem fatherid CDATA #IMPLIED>
 ]>

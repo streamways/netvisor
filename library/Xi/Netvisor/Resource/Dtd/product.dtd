@@ -1,9 +1,9 @@
 <!DOCTYPE root [
 <!ELEMENT root (product)>
 <!ELEMENT product (productbaseinformation, productbookkeepingdetails?, productadditionalinformation?)>
-<!ELEMENT productbaseinformation (productcode?, productgroup, name, description?, unitprice, unit?, unitweight?, kaukevaproductcode?, purchaseprice?, tariffheading?, comissionpercentage?, isactive, issalesproduct, inventoryenabled?, countryoforigin?)>
-<!ELEMENT productbookkeepingdetails (defaultvatpercentage)>
-<!ELEMENT productadditionalinformation (productnetweight?, productgrossweight?, productweightunit?, productpackageinformation?)>
+<!ELEMENT productbaseinformation (productcode?, productgroup, name, description?, unitprice, unit?, unitweight?, kaukevaproductcode?, purchaseprice?, tariffheading?, comissionpercentage?, isactive, issalesproduct, inventoryenabled?, countryoforigin?, primaryeancode?, secondaryeancode?)>
+<!ELEMENT productbookkeepingdetails (defaultvatpercentage, defaultdomesticaccountnumber?, defaulteuaccountnumber?, defaultoutsideeuaccountnumber?)>
+<!ELEMENT productadditionalinformation (productnetweight?, productgrossweight?, productweightunit?, productpackageinformation?, dimension*)>
 <!ELEMENT productpackageinformation (packagewidth, packageheight, packagelength)>
 
 <!ELEMENT productcode (#PCDATA)>
@@ -11,7 +11,7 @@
 <!ELEMENT name (#PCDATA)>
 <!ELEMENT description (#PCDATA)>
 <!ELEMENT unitprice (#PCDATA)>
-	<!ATTLIST unitprice type (net|gross) #REQUIRED>	
+	<!ATTLIST unitprice type (net|gross) #REQUIRED>
 <!ELEMENT unit (#PCDATA)>
 <!ELEMENT unitweight (#PCDATA)>
 <!ELEMENT kaukevaproductcode (#PCDATA)>
@@ -23,8 +23,13 @@
 <!ELEMENT inventoryenabled (#PCDATA)>
 <!ELEMENT countryoforigin (#PCDATA)>
   <!ATTLIST countryoforigin type CDATA "ISO-3166">
+<!ELEMENT primaryeancode (#PCDATA)>
+<!ELEMENT secondaryeancode (#PCDATA)>
 
 <!ELEMENT defaultvatpercentage (#PCDATA)>
+<!ELEMENT defaultdomesticaccountnumber (#PCDATA)>
+<!ELEMENT defaulteuaccountnumber (#PCDATA)>
+<!ELEMENT defaultoutsideeuaccountnumber (#PCDATA)>
 
 <!ELEMENT productnetweight (#PCDATA)>
 <!ELEMENT productgrossweight (#PCDATA)>
@@ -33,4 +38,9 @@
 <!ELEMENT packagewidth (#PCDATA)>
 <!ELEMENT packageheight (#PCDATA)>
 <!ELEMENT packagelength (#PCDATA)>
+
+<!ELEMENT dimension (dimensionname, dimensionitem)>
+<!ELEMENT dimensionname (#PCDATA)>
+<!ELEMENT dimensionitem (#PCDATA)>
+<!ATTLIST dimensionitem fatherid CDATA #IMPLIED>
 ]>
