@@ -351,14 +351,37 @@ class Netvisor
 		);
 	}
 
+	/**
+	 * @param int    $id
+	 * @param string $status
+	 *
+	 * @return string|null
+	 * @throws NetvisorException
+	 */
+	public function updateInvoiceStatus(int $id, string $status): ?string
+	{
+		if (!$this->config->isEnabled())
+		{
+			return null;
+		}
+
+		$request = new Request($this->client, $this->config);
+
+		return $request->get("updatesalesinvoicestatus", [
+			"netvisorkey" => $id,
+			"status"      => $status,
+		]);
+	}
+
 
 	/**
 	 * @param string $service
 	 * @param array  $params
 	 *
 	 * @return null|string
+	 * @throws NetvisorException
 	 */
-	private function get($service, array $params = [])
+	private function get($service, array $params = []): ?string
 	{
 		if (!$this->config->isEnabled())
 		{
@@ -379,7 +402,7 @@ class Netvisor
 	 * @return null|string
 	 * @throws NetvisorException
 	 */
-	public function requestWithBody(Root $root, $service, array $params = [], $language = null)
+	public function requestWithBody(Root $root, $service, array $params = [], $language = null): ?string
 	{
 		if (!$this->config->isEnabled())
 		{
