@@ -373,6 +373,45 @@ class Netvisor
 		]);
 	}
 
+	/**
+	 * @param int $id
+	 *
+	 * @return string|null
+	 * @throws NetvisorException
+	 */
+	public function deleteSalesInvoice(int $id): ?string
+	{
+		if (!$this->config->isEnabled())
+		{
+			return null;
+		}
+
+		$request = new Request($this->client, $this->config);
+
+		return $request->get("deletesalesinvoice", [
+			"invoiceid" => $id,
+		]);
+	}
+
+	/**
+	 * @param int $id
+	 *
+	 * @return string|null
+	 * @throws NetvisorException
+	 */
+	public function deleteSalesOrder(int $id): ?string
+	{
+		if (!$this->config->isEnabled())
+		{
+			return null;
+		}
+
+		$request = new Request($this->client, $this->config);
+
+		return $request->get("deletesalesinvoice", [
+			"orderid" => $id,
+		]);
+	}
 
 	/**
 	 * @param string $service
