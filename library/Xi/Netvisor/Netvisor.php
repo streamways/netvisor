@@ -175,6 +175,22 @@ class Netvisor
 	}
 
 	/**
+	 * List products, optionally filtered by params.
+	 *
+	 * @param array|null $params
+	 *
+	 * @return string|null
+	 * @throws \Xi\Netvisor\Exception\NetvisorException
+	 */
+	public function getProductsBy(array $params = [])
+	{
+		return $this->get(
+			"productlist",
+			$params
+		);
+	}
+
+	/**
 	 * List customers that have changed since given date.
 	 *
 	 * Giving a keyword would override the changed since parameter.
