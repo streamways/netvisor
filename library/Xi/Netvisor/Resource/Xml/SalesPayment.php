@@ -32,7 +32,7 @@ class SalesPayment extends Root
 		array $paymentMethodData)
 	{
 		$this->sum              = new AttributeElement($sumData["sum"], ["currency" => $sumData["currency"]]);
-		$this->paymentDate      = $paymentDate;
+		$this->paymentDate      = $paymentDate->format("Y-m-d");
 		$this->targetIdentifier = new AttributeElement(
 			$sumData["targetIdentifier"],
 			[
