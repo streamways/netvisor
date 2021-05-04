@@ -31,28 +31,29 @@ class SalesPayment extends Root
 	public function __construct(array $sumData, DateTime $paymentDate, array $targetIdentifierData, string $sourceName,
 		array $paymentMethodData)
 	{
-		$this->sum              = new AttributeElement($sumData["sum"], ["currency" => $sumData["currency"]]);
-		$this->paymentDate      = $paymentDate->format("Y-m-d");
-		$this->targetIdentifier = new AttributeElement(
-			$targetIdentifierData["targetIdentifier"],
-			[
-				"type"       => $targetIdentifierData["type"],
-				"targetType" => array_key_exists("targetType", $targetIdentifierData) ? $targetIdentifierData["targetType"] : null,
-			]
-		);
-		$this->sourceName       = $sourceName;
-		$this->paymentMethod    = new AttributeElement(
-			$paymentMethodData["paymentMethod"],
-			[
-				"type"                                 => $paymentMethodData["type"],
-				"overrideAccountingAccountNumber"      => array_key_exists("overrideAccountingAccountNumber", $paymentMethodData)
-					? $paymentMethodData["overrideAccountingAccountNumber"]
-					: null,
-				"overrideSalesReceivableAccountNumber" => array_key_exists("overrideSalesReceivableAccountNumber", $paymentMethodData)
-					? $paymentMethodData["overrideSalesReceivableAccountNumber"]
-					: null,
-			]
-		);
+		$this->sum                  = new AttributeElement($sumData["sum"], ["currency" => $sumData["currency"]]);
+		$this->paymentDate          = $paymentDate->format("Y-m-d");
+		$targetIdentifierAttributes = [
+			"type" => $targetIdentifierData["type"],
+		];
+		if (array_key_exists("targetType", $targetIdentifierData))
+		{
+			$targetIdentifierAttributes["targetType"] = $targetIdentifierData["targetType"];
+		}
+		$this->targetIdentifier  = new AttributeElement($targetIdentifierData["targetIdentifier"], $targetIdentifierAttributes);
+		$this->sourceName        = $sourceName;
+		$paymentMethodAttributes = [
+			"type" => $paymentMethodData["type"],
+		];
+		if (array_key_exists("overrideAccountingAccountNumber", $paymentMethodData))
+		{
+			$paymentMethodAttributes["overrideAccountingAccountNumber"] = $paymentMethodData["overrideAccountingAccountNumber"];
+		}
+		if (array_key_exists("overrideSalesReceivableAccountNumber", $paymentMethodData))
+		{
+			$paymentMethodAttributes["overrideSalesReceivableAccountNumber"] = $paymentMethodData["overrideSalesReceivableAccountNumber"];
+		}
+		$this->paymentMethod = new AttributeElement($paymentMethodData["paymentMethod"], $paymentMethodAttributes);
 	}
 
 	/**
