@@ -38,7 +38,7 @@ class SalesPayment extends Root
 		];
 		if (array_key_exists("targetType", $targetIdentifierData))
 		{
-			$targetIdentifierAttributes["targetType"] = $targetIdentifierData["targetType"];
+			$targetIdentifierAttributes["targettype"] = $targetIdentifierData["targetType"];
 		}
 		$this->targetIdentifier  = new AttributeElement($targetIdentifierData["targetIdentifier"], $targetIdentifierAttributes);
 		$this->sourceName        = $sourceName;
@@ -47,11 +47,11 @@ class SalesPayment extends Root
 		];
 		if (array_key_exists("overrideAccountingAccountNumber", $paymentMethodData))
 		{
-			$paymentMethodAttributes["overrideAccountingAccountNumber"] = $paymentMethodData["overrideAccountingAccountNumber"];
+			$paymentMethodAttributes["overrideaccountingaccountnumber"] = $paymentMethodData["overrideAccountingAccountNumber"];
 		}
 		if (array_key_exists("overrideSalesReceivableAccountNumber", $paymentMethodData))
 		{
-			$paymentMethodAttributes["overrideSalesReceivableAccountNumber"] = $paymentMethodData["overrideSalesReceivableAccountNumber"];
+			$paymentMethodAttributes["overridesalesreceivableaccountnumber"] = $paymentMethodData["overrideSalesReceivableAccountNumber"];
 		}
 		$this->paymentMethod = new AttributeElement($paymentMethodData["paymentMethod"], $paymentMethodAttributes);
 	}
