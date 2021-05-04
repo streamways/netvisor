@@ -34,9 +34,9 @@ class SalesPayment extends Root
 		$this->sum              = new AttributeElement($sumData["sum"], ["currency" => $sumData["currency"]]);
 		$this->paymentDate      = $paymentDate->format("Y-m-d");
 		$this->targetIdentifier = new AttributeElement(
-			$sumData["targetIdentifier"],
+			$targetIdentifierData["targetIdentifier"],
 			[
-				"type"       => $sumData["type"],
+				"type"       => $targetIdentifierData["type"],
 				"targetType" => array_key_exists("targetType", $targetIdentifierData) ? $targetIdentifierData["targetType"] : null,
 			]
 		);
@@ -44,12 +44,12 @@ class SalesPayment extends Root
 		$this->paymentMethod    = new AttributeElement(
 			$paymentMethodData["paymentMethod"],
 			[
-				"type"                                 => $sumData["type"],
-				"overrideAccountingAccountNumber"      => array_key_exists("overrideAccountingAccountNumber", $targetIdentifierData)
-					? $targetIdentifierData["overrideAccountingAccountNumber"]
+				"type"                                 => $paymentMethodData["type"],
+				"overrideAccountingAccountNumber"      => array_key_exists("overrideAccountingAccountNumber", $paymentMethodData)
+					? $paymentMethodData["overrideAccountingAccountNumber"]
 					: null,
-				"overrideSalesReceivableAccountNumber" => array_key_exists("overrideSalesReceivableAccountNumber", $targetIdentifierData)
-					? $targetIdentifierData["overrideSalesReceivableAccountNumber"]
+				"overrideSalesReceivableAccountNumber" => array_key_exists("overrideSalesReceivableAccountNumber", $paymentMethodData)
+					? $paymentMethodData["overrideSalesReceivableAccountNumber"]
 					: null,
 			]
 		);
