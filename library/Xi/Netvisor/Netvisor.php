@@ -114,6 +114,26 @@ class Netvisor
 		return $this->requestWithBody($customer, 'customer', ['method' => $add ? 'add' : 'edit', 'id' => $add ? null : $customer->netvisorkey]);
 	}
 
+    /**
+     * @param int $id
+     *
+     * @return string|null
+     * @throws NetvisorException
+     */
+    public function deleteCustomer(int $id): ?string
+    {
+        if (!$this->config->isEnabled())
+        {
+            return null;
+        }
+
+        $request = new Request($this->client, $this->config);
+
+        return $request->get("deletecustomer", [
+            "customerid" => $id,
+        ]);
+    }
+
 	/**
 	 * @param Product $product
 	 *
