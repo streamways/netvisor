@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use Xi\Netvisor\Exception\NetvisorException;
 use Xi\Netvisor\Config;
+use SimpleXMLElement;
 
 class Request
 {
@@ -43,7 +44,10 @@ class Request
         );
 
         if ($this->hasRequestFailed($response)) {
-            throw new NetvisorException((string)$response->getBody());
+            $resXML = new SimpleXMLElement((string)$response->getBody());
+            $resXML->addChild("Request","");
+            $resXML->Request->addChild("Url", $url);
+            throw new NetvisorException((string)$resXML->asXML());
         }
 
         return (string)$response->getBody();
@@ -74,7 +78,11 @@ class Request
         );
 
         if ($this->hasRequestFailed($response)) {
-            throw new NetvisorException((string)$response->getBody());
+            $resXML = new SimpleXMLElement((string)$response->getBody());
+            $resXML->addChild("Request","");
+            $resXML->Request->addChild("Url", $url);
+            $resXML->Request->addChild("Body", $xml);
+            throw new NetvisorException((string)$resXML->asXML());
         }
 
         return (string)$response->getBody();
