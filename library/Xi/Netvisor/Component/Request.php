@@ -126,7 +126,7 @@ class Request
      */
     private function hasRequestFailed(ResponseInterface $response)
     {
-        return str_contains((string)$response->getBody(), '<Status>FAILED</Status>');
+        return strstr((string)$response->getBody(), '<Status>FAILED</Status>') != false;
     }
 
     /**
