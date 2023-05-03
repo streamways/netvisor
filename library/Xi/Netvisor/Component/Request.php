@@ -3,7 +3,7 @@
 namespace Xi\Netvisor\Component;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
 use Xi\Netvisor\Exception\NetvisorException;
 use Xi\Netvisor\Config;
 
@@ -121,10 +121,10 @@ class Request
     }
 
     /**
-     * @param  Response $response
+     * @param ResponseInterface $response
      * @return boolean
      */
-    private function hasRequestFailed($response)
+    private function hasRequestFailed(ResponseInterface $response)
     {
         return strstr((string)$response->getBody(), '<Status>FAILED</Status>') != false;
     }
