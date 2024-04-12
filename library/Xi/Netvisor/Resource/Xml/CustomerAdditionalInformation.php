@@ -6,6 +6,8 @@ class CustomerAdditionalInformation
 {
     private $invoicingLanguage;
 
+    private $defaultPaymentTerm;
+
     /**
      * @param string $invoicingLanguage
      */
@@ -13,5 +15,15 @@ class CustomerAdditionalInformation
         $invoicingLanguage = 'FI'
     ) {
         $this->invoicingLanguage = $invoicingLanguage;
+    }
+
+    /**
+     * @param $defaultPaymentTerm
+     *
+     * @return void
+     */
+    public function setDefaultPaymentTerm($defaultPaymentTerm)
+    {
+        $this->defaultPaymentTerm = $defaultPaymentTerm;
     }
 }
