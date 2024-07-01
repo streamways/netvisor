@@ -2,6 +2,8 @@
 
 namespace Xi\Netvisor\Resource\Xml;
 
+use Xi\Netvisor\Resource\Xml\Component\AttributeElement;
+
 class CustomerAdditionalInformation
 {
     private $invoicingLanguage;
@@ -22,8 +24,8 @@ class CustomerAdditionalInformation
      *
      * @return void
      */
-    public function setDefaultPaymentTerm($defaultPaymentTerm)
+    public function setDefaultPaymentTerm($defaultPaymentTerm, $type = "netvisor")
     {
-        $this->defaultPaymentTerm = $defaultPaymentTerm;
+        $this->defaultPaymentTerm = new AttributeElement($defaultPaymentTerm, ["type" => $type]);
     }
 }

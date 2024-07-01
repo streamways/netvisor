@@ -461,6 +461,15 @@ class Netvisor
 		]);
 	}
 
+    /**
+     * @return string|null
+     * @throws NetvisorException
+     */
+    public function getPaymentTerms(): ?string
+    {
+        return $this->get("paymenttermlist");
+    }
+
 	/**
 	 * @param string $service
 	 * @param array  $params
