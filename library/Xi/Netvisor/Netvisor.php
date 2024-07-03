@@ -470,6 +470,61 @@ class Netvisor
         return $this->get("paymenttermlist");
     }
 
+    /**
+     * List products, optionally filtered by a keyword, with extended data.
+     *
+     * The keyword matches Netvisor fields
+     * Name, Customer Code, Organization identifier, CoName
+     *
+     * @param string|null $keyword
+     *
+     * @return string|null
+     * @throws NetvisorException
+     */
+    public function getExtendedProducts(?string $keyword = null): ?string
+    {
+        return $this->get(
+            "extendedproductlist",
+            [
+                "keyword" => $keyword,
+            ]
+        );
+    }
+
+    /**
+     * List products, optionally filtered by params, with extended data.
+     *
+     * @param array|null $params
+     *
+     * @return string|null
+     * @throws NetvisorException
+     */
+    public function getExtendedProductsBy(array $params = []): ?string
+    {
+        return $this->get(
+            "extendedproductlist",
+            $params
+        );
+    }
+
+    /**
+     * List products that have changed since given date, with extended data.
+     *
+     * @param DateTime $changedSince
+     *
+     * @return string|null
+     * @throws NetvisorException
+     */
+    public function getExtendedProductsChangedSince(DateTime $changedSince): ?string
+    {
+        return $this->get(
+            "extendedproductlist",
+            [
+                "productchangedsince" => $changedSince->format('Y-m-d'),
+            ]
+        );
+    }
+
 	/**
 	 * @param string $service
 	 * @param array  $params
