@@ -61,8 +61,8 @@ class SalesInvoiceTest extends XmlTestCase
      */
     public function xmlHasAddedSalesInvoiceProductLines()
     {
-        $this->invoice->addSalesInvoiceProductLine(new SalesInvoiceProductLine('1', 'A', '1,00', '24', '1'));
-        $this->invoice->addSalesInvoiceProductLine(new SalesInvoiceProductLine('2', 'B', '1,00', '24', '1'));
+        $this->invoice->addSalesInvoiceProductLine(new SalesInvoiceProductLine('1', 'A', ["price" => '1,00', "type" => "net"], '24', '1'));
+        $this->invoice->addSalesInvoiceProductLine(new SalesInvoiceProductLine('2', 'B', ["price" => '1,00', "type" => "net"], '24', '1'));
 
         $xml = $this->toXml($this->invoice->getSerializableObject());
 

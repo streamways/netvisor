@@ -6,7 +6,7 @@ use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use Xi\Netvisor\Serializer\Naming\LowercaseNamingStrategy;
 
-class XmlTestCase extends \PHPUnit_Framework_TestCase
+class XmlTestCase extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Serializer

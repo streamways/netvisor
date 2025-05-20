@@ -10,7 +10,7 @@ use GuzzleHttp\Client;
 use Xi\Netvisor\Resource\Xml\TestResource;
 use GuzzleHttp\Psr7\Response;
 
-class NetvisorTest extends \PHPUnit_Framework_TestCase
+class NetvisorTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Netvisor
@@ -28,7 +28,7 @@ class NetvisorTest extends \PHPUnit_Framework_TestCase
     private $config;
 
     /**
-     * @test
+     *
      */
     public function setUp()
     {
@@ -88,7 +88,8 @@ class NetvisorTest extends \PHPUnit_Framework_TestCase
      */
     public function throwsIfXmlIsNotValid()
     {
-        $this->setExpectedException('Xi\Netvisor\Exception\NetvisorException', 'XML is not valid according to DTD');
+        $this->expectException('Xi\Netvisor\Exception\NetvisorException');
+        $this->expectExceptionMessage('XML is not valid according to DTD');
 
         $this->netvisor->requestWithBody(new TestResource(), 'service', array(), null);
     }

@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 use Xi\Netvisor\Exception\NetvisorException;
 use Xi\Netvisor\Config;
+use SimpleXMLElement;
 
 class Request
 {
@@ -43,7 +44,10 @@ class Request
         );
 
         if ($this->hasRequestFailed($response)) {
-            throw new NetvisorException((string)$response->getBody());
+            $resXML = new SimpleXMLElement((string)$response->getBody());
+            $resXML->addChild("Request","");
+            $resXML->Request->addChild("Url", $url);
+            throw new NetvisorException((string)$resXML->asXML());
         }
 
         return (string)$response->getBody();
@@ -74,7 +78,11 @@ class Request
         );
 
         if ($this->hasRequestFailed($response)) {
-            throw new NetvisorException((string)$response->getBody());
+            $resXML = new SimpleXMLElement((string)$response->getBody());
+            $resXML->addChild("Request","");
+            $resXML->Request->addChild("Url", $url);
+            $resXML->Request->addChild("Body", $xml);
+            throw new NetvisorException((string)$resXML->asXML());
         }
 
         return (string)$response->getBody();
@@ -171,7 +179,7 @@ class Request
      */
     private function getAuthenticationTimestamp()
     {
-        $timestamp = \DateTime::createFromFormat('U.u', microtime(true));
+        $timestamp = \DateTime::createFromFormat('U.u', number_format(microtime(true), 6, '.', ''));
         $timestamp->setTimezone(new \DateTimeZone('GMT'));
 
         return substr($timestamp->format('Y-m-d H:i:s.u'), 0, -3);

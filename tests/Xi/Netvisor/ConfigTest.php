@@ -4,7 +4,7 @@ namespace Xi\Netvisor\Component;
 
 use Xi\Netvisor\Config;
 
-class ConfigTest extends \PHPUnit_Framework_TestCase
+class ConfigTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test
@@ -32,9 +32,9 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($c->getOrganizationId(), 'organizationId');
         $this->assertEquals($c->getUserKey(), 'userKey');
         $this->assertEquals($c->getPartnerKey(), 'partnerKey');
-        
+
         $c->setLanguage('orcish');
         $this->assertEquals($c->getLanguage(), 'orcish');
     }
-    
+
 }

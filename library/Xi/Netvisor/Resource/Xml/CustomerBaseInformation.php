@@ -7,31 +7,31 @@ use Xi\Netvisor\Resource\Xml\Component\AttributeElement;
 
 class CustomerBaseInformation
 {
-
 	private $internalidentifier;
-    private $externalidentifier;
-    private $name;
-    private $nameextension;
-    private $streetaddress;
+	private $externalidentifier;
+	private $name;
+	private $nameextension;
+	private $streetaddress;
 	private $additionaladdressLine;
 	private $city;
 	private $postnumber;
 	private $country;
 	private $email;
-	private $isactive;
+	private $isActive;
+	private $isPrivateCustomer;
 
 	/**
 	 * @param string $name
 	 */
-    public function __construct($name) {
-    	$this->name = $name;
+	public function __construct($name) {
+		$this->name = $name;
 	}
-	
-	public function setInternalidentifier($internalidentifier) {
+
+	public function setInternalIdentifier($internalidentifier) {
 		$this->internalidentifier = $internalidentifier;
 	}
-	
-	public function setExternalidentifier($externalidentifier) {
+
+	public function setExternalIdentifier($externalidentifier) {
 		$this->externalidentifier = $externalidentifier;
 	}
 
@@ -59,35 +59,42 @@ class CustomerBaseInformation
 	/**
 	 * @param mixed $email
 	 */
-	public function setemail($email) {
+	public function setEmail($email) {
 		$this->email = $email;
 	}
 
 	/**
 	 * @param mixed $isactive
 	 */
-	public function setIsactive($isActive) {
-		$this->isactive = $isActive;
+	public function setIsActive($isActive) {
+		$this->isActive = $isActive;
 	}
 
 	/**
 	 * @param mixed $nameextension
 	 */
-	public function setNameextension($nameExtension) {
+	public function setNameExtension($nameExtension) {
 		$this->nameextension = $nameExtension;
 	}
 
 	/**
 	 * @param mixed $postnumber
 	 */
-	public function setPostnumber($postnumber) {
+	public function setPostNumber($postnumber) {
 		$this->postnumber = $postnumber;
 	}
 
 	/**
 	 * @param mixed $streetaddress
 	 */
-	public function setStreetaddress($streetAddress) {
+	public function setStreetAddress($streetAddress) {
 		$this->streetaddress = $streetAddress;
+	}
+
+	/**
+	 * @param mixed $isPrivateCustomer
+	 */
+	public function setIsPrivateCustomer($isPrivateCustomer) {
+		$this->isPrivateCustomer = $isPrivateCustomer;
 	}
 }

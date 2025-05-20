@@ -1,0 +1,29 @@
+<!DOCTYPE root [
+<!ELEMENT root (salespayment)>
+	<!ELEMENT salespayment (sum, paymentdate, targetidentifier, sourcename, paymentmethod, salespaymentvoucherlines*)>
+		<!ELEMENT salespaymentvoucherlines (voucherline+)>
+			<!ELEMENT voucherline (linesum, description?, accountnumber, vatpercent, dimension*)>
+				<!ELEMENT dimension (dimensionname, dimensionitem)>
+
+<!ELEMENT sum (#PCDATA)>
+	<!ATTLIST sum currency CDATA "EUR">
+<!ELEMENT paymentdate (#PCDATA)>
+<!ELEMENT targetidentifier (#PCDATA)>
+	<!ATTLIST targetidentifier type (netvisor|invoicenumber|reference) #REQUIRED>
+  <!ATTLIST targetidentifier targettype (invoice|order) #IMPLIED>
+<!ELEMENT sourcename (#PCDATA)>
+<!ELEMENT paymentmethod (#PCDATA)>
+	<!ATTLIST paymentmethod type CDATA #REQUIRED>
+	<!ATTLIST paymentmethod overrideaccountingaccountnumber CDATA #IMPLIED>
+	<!ATTLIST paymentmethod overridesalesreceivableaccountnumber CDATA #IMPLIED>
+
+<!ELEMENT linesum (#PCDATA)>
+	<!ATTLIST linesum type (net|gross) #REQUIRED>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT accountnumber (#PCDATA)>
+<!ELEMENT vatpercent (#PCDATA)>
+	<!ATTLIST vatpercent vatcode (NONE|KOOS|EUOS|EUUO|EUPO|100|KOMY|EUMY|EUUM|EUPM312|EUPM309|MUUL|EVTO|EVPO|KOMY0) #REQUIRED>
+
+<!ELEMENT dimensionname (#PCDATA)>
+<!ELEMENT dimensionitem (#PCDATA)>
+]>

@@ -1,8 +1,8 @@
 <!DOCTYPE root [
 <!ELEMENT root (purchaseinvoice)>
-<!ELEMENT purchaseinvoice (invoicenumber, invoicedate, invoicesource?, valuedate?, duedate, purchaseinvoiceonround?, vendorcode?, vendorname?, vendoraddressline?, vendorpostnumber?, vendorcity?, vendorcountry?, vendorphonenumber?, vendorfaxnumber?, vendoremail?, vendorhomepage?, amount, accountnumber?, organizationidentifier?, deliverydate?, overduefinepercent?, bankreferencenumber?, ourreference?, yourreference?, currencycode?, deliveryterms?, deliverymethod?, comment?, checksum?, pdfextrapages?, readyforaccounting?, primaryvendormatchtype?, purchaseinvoicelines?, purchaseinvoicesublines?, purchaseinvoicecommentlines?, purchaseinvoiceattachments?, purchaseinvoicerelatedpurchaseordernumbers?)>
+  <!ELEMENT purchaseinvoice (invoicenumber, invoicedate, invoicesource?, valuedate?, eventdate?, duedate, purchaseinvoiceonround?, vendorcode?, vendorname?, vendoraddressline?, vendorpostnumber?, vendorcity?, vendorcountry?, vendorphonenumber?, vendorfaxnumber?, vendoremail?, vendorhomepage?, amount, accountnumber?, organizationidentifier?, deliverydate?, overduefinepercent?, bankreferencenumber?, ourreference?, yourreference?, currencycode?, deliveryterms?, deliverymethod?, comment?, checksum?, pdfextrapages?, readyforaccounting?, agreementidentifier?, primaryvendormatchtype?, purchaseinvoicelines?, purchaseinvoicesublines?, purchaseinvoicecommentlines?, purchaseinvoiceattachments?, purchaseinvoicerelatedpurchaseordernumbers?, partialpaymentdetails*)>
     <!ELEMENT purchaseinvoicelines (purchaseinvoiceline+)>
-        <!ELEMENT purchaseinvoiceline (productcode?, productname, orderedamount?, deliveredamount, unitname?, unitprice, discountpercentage?, vatpercent, linesum, description?, sort?, accountingsuggestion?, dimension*)>
+<!ELEMENT purchaseinvoiceline (productcode?, productname, orderedamount?, deliveredamount, unitname?, unitprice, discountpercentage?, vatpercent, linesum, description?, sort?, accountingsuggestion?, dimension*)>
         <!ELEMENT dimension (dimensionname, dimensionitem)>
     <!ELEMENT purchaseinvoicesublines (purchaseinvoicesubline+)>
         <!ELEMENT purchaseinvoicesubline (productcode?, productname?, orderedamount?, deliveredamount?, unitname?, unitprice?, discountpercentage?, vatpercent?, linesum?, description?, sort?)>
@@ -15,15 +15,17 @@
 
 <!ELEMENT invoicenumber (#PCDATA)>
 <!ELEMENT invoicedate (#PCDATA)>
-    <!ATTLIST invoicedate format CDATA "ansi">
-    <!ATTLIST invoicedate findopendate (true) #IMPLIED>
+<!ATTLIST invoicedate format CDATA "ansi">
+<!ATTLIST invoicedate findopendate (true) #IMPLIED>
 <!ELEMENT invoicesource (#PCDATA)>
 <!ELEMENT valuedate (#PCDATA)>
-    <!ATTLIST valuedate format CDATA "ansi">
+<!ATTLIST valuedate format CDATA "ansi">
+<!ELEMENT eventdate (#PCDATA)>
+<!ATTLIST eventdate format CDATA "ansi">
 <!ELEMENT duedate (#PCDATA)>
-    <!ATTLIST duedate format CDATA "ansi">
+<!ATTLIST duedate format CDATA "ansi">
 <!ELEMENT purchaseinvoiceonround (#PCDATA)>
-    <!ATTLIST purchaseinvoiceonround type CDATA "netvisor">
+<!ATTLIST purchaseinvoiceonround type CDATA "netvisor">
 <!ELEMENT vendorcode (#PCDATA)>
 <!ELEMENT vendorname (#PCDATA)>
 <!ELEMENT vendoraddressline (#PCDATA)>
@@ -38,7 +40,7 @@
 <!ELEMENT accountnumber (#PCDATA)>
 <!ELEMENT organizationidentifier (#PCDATA)>
 <!ELEMENT deliverydate (#PCDATA)>
-    <!ATTLIST deliverydate format CDATA "ansi">
+<!ATTLIST deliverydate format CDATA "ansi">
 <!ELEMENT overduefinepercent (#PCDATA)>
 <!ELEMENT bankreferencenumber (#PCDATA)>
 <!ELEMENT ourreference (#PCDATA)>
@@ -52,6 +54,7 @@
 <!ELEMENT readyforaccounting (#PCDATA)>
 <!ELEMENT primaryvendormatchtype (#PCDATA)>
 <!ELEMENT sort (#PCDATA)>
+<!ELEMENT agreementidentifier (#PCDATA)>
 <!ELEMENT accountingsuggestion (#PCDATA)>
 
 <!ELEMENT productcode (#PCDATA)>
@@ -63,7 +66,7 @@
 <!ELEMENT discountpercentage (#PCDATA)>
 <!ELEMENT vatpercent (#PCDATA)>
 <!ELEMENT linesum (#PCDATA)>
-    <!ATTLIST linesum type (brutto) #REQUIRED>
+<!ATTLIST linesum type (brutto) #REQUIRED>
 <!ELEMENT description (#PCDATA)>
 <!ELEMENT dimensionname (#PCDATA)>
 <!ELEMENT dimensionitem (#PCDATA)>
@@ -74,5 +77,8 @@
 <!ELEMENT documentdata (#PCDATA)>
   <!ATTLIST documentdata documenttype (invoiceimage|otherattachment) #IMPLIED>
 <!ELEMENT purchaseordernumber (#PCDATA)>
-]>
 
+<!ELEMENT partialpaymentdetails (paidamount)>
+<!ELEMENT paidamount (#PCDATA)>
+<!ATTLIST paidamount amountcurrencyidentifier CDATA #REQUIRED>
+]>
