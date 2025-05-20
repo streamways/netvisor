@@ -20,9 +20,7 @@ class SalesInvoiceProductLine
     private $accountingAccountSuggestion;
     private $skipAccrual;
 
-    /**
-     * @XmlList(inline = true, entry = "dimension")
-     */
+    #[XmlList(entry: "dimension", inline: true)]
     private $dimensions;
 
     /**

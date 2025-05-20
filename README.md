@@ -1,13 +1,10 @@
 # Xi Netvisor
 
-Netvisor API interface for PHP 5.6+.
-
-[![Build Status](https://secure.travis-ci.org/xi-project/xi-netvisor.png)](https://travis-ci.org/xi-project/xi-netvisor)
+Netvisor API interface for PHP
 
 ## Before you start hacking away
 
 You must do the following things to get everything up and running:
-
 - Get your partner ID and key from Netvisor
 - Get access to Netvisor web management page (testing environment has its own management page)
 - Activate use of external interfaces in your management page
@@ -37,7 +34,7 @@ netvisor.enabled        = true
 
 ```php
 $config   = new Xi\Netvisor\Config(...);       // Use the parameters described above.
-$netvisor = new Xi\Netvisor\Netvisor($config);
+$netvisor = Xi\Netvisor\Netvisor::build($config);
 ```
 
 ### Actions
@@ -80,9 +77,7 @@ $response = new \SimpleXMLElement($this->netvisor->sendCustomer($customer));
 $netvisorIdentifier = (string)$response->Replies->InsertedDataIdentifier;
 ```
 
-
 #### Send invoice
-
 ```php
 $invoice = new Xi\Netvisor\Resource\Xml\SalesInvoice(...);
 
@@ -91,4 +86,15 @@ $invoiceProductLine = new Xi\Netvisor\Resource\Xml\SalesInvoiceProductLine(...);
 $invoice->addSalesInvoiceProductLine($invoiceProductLine);
 
 $netvisor->sendInvoice($invoice);
+```
+
+#### Debug XML
+```php
+$builder = SerializerBuilder::create()
+    ->setPropertyNamingStrategy(new LowercaseNamingStrategy())
+    ->build();
+// Check the object
+print_r($invoice->getSerializableObject());
+// Check the XML
+die($netvisor->processXml($builder->serialize($invoice->getSerializableObject(), 'xml')));
 ```

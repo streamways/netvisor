@@ -5,7 +5,7 @@ namespace Xi\Netvisor\Resource\Xml;
 use Xi\Netvisor\Resource\Xml\Component\WrapperElement;
 use Xi\Netvisor\Resource\Xml\Component\AttributeElement;
 
-class CustomerBaseinformation
+class CustomerBaseInformation
 {
 
 	private $internalidentifier;

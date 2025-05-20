@@ -24,8 +24,8 @@ class Customer extends Root
     /** @var CustomerAdditionalInformation */
     private $customerAdditionalInformation;
 
-    public function __construct() {
-
+    public function __construct(CustomerBaseinformation $customerbaseinformation) {
+        $this->customerbaseinformation = $customerbaseinformation;
     }
 
 	/**

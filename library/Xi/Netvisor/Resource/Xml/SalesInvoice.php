@@ -7,9 +7,6 @@ use Xi\Netvisor\Resource\Xml\Component\Root;
 use Xi\Netvisor\Resource\Xml\Component\AttributeElement;
 use Xi\Netvisor\Resource\Xml\Component\WrapperElement;
 
-/**
- * TODO: Should be kept immutable?
- */
 class SalesInvoice extends Root
 {
     private $salesInvoiceNumber;
@@ -53,17 +50,13 @@ class SalesInvoice extends Root
     private $printChannelFormat;
     private $secondName;
 
-    /**
-     * @XmlList(entry = "invoiceline")
-     */
+    #[XmlList(entry: "invoiceline")]
     private $invoiceLines = [];
 
     private $invoiceVoucherLines;
     private $salesInvoiceAccrual;
 
-    /**
-     * @XmlList(entry = "salesinvoiceattachment")
-     */
+    #[XmlList(entry: "salesinvoiceattachment")]
     private $salesInvoiceAttachments;
 
     private $customTags;
@@ -86,8 +79,8 @@ class SalesInvoice extends Root
     ) {
         $this->salesInvoiceDate = $salesInvoiceDate->format('Y-m-d');
         $this->salesInvoiceAmount = $salesInvoiceAmount;
-        $this->salesInvoiceStatus = new AttributeElement($salesInvoiceStatus, array('type' => 'netvisor'));
-        $this->invoicingCustomerIdentifier = new AttributeElement($invoicingCustomerIdentifier, array('type' => 'netvisor')); // TODO: Type can be netvisor/customer.
+        $this->salesInvoiceStatus = new AttributeElement($salesInvoiceStatus, ['type' => 'netvisor']);
+        $this->invoicingCustomerIdentifier = new AttributeElement($invoicingCustomerIdentifier, ['type' => 'netvisor']); // TODO: Type can be netvisor/customer.
         $this->paymentTermNetDays = $paymentTermNetDays;
         $this->secondName = array_key_exists('secondName', $additionalFields) ? new AttributeElement($additionalFields['secondName'], ['type' => 'netvisor']) : null;
 

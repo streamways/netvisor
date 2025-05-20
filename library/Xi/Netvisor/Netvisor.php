@@ -80,12 +80,11 @@ class Netvisor
 
     /**
      * @param  SalesInvoice $invoice
-     * @param  String       $language
      * @return null|string
      */
-    public function sendInvoice(SalesInvoice $invoice, $language = null)
+    public function sendSalesInvoice(SalesInvoice $invoice)
     {
-        return $this->requestWithBody($invoice, 'salesinvoice', array(), $language);
+        return $this->requestWithBody($invoice, 'salesinvoice', ['method' => 'add']);
     }
 
     /**
@@ -146,6 +145,72 @@ class Netvisor
             'getcustomer',
             [
                 'id' => $id,
+            ]
+        );
+    }
+
+    /**
+     * List invoices, optionally filtered by a keyword.
+     *
+     * @param null|string $keyword
+     * @return null|string
+     */
+    public function getSalesInvoices($keyword = null)
+    {
+        return $this->get(
+            'salesinvoicelist',
+            [
+                'keyword' => $keyword,
+            ]
+        );
+    }
+
+    /**
+     * List invoices that have changed since given date.
+     *
+     * @param DateTime $changedSince
+     * @return null|string
+     */
+    public function getSalesInvoicesChangedSince(DateTime $changedSince)
+    {
+        return $this->get(
+            'salesinvoicelist',
+            [
+                'changedsince' => $changedSince->format('Y-m-d'),
+            ]
+        );
+    }
+
+    /**
+     * Get details for a sales invoice identified by Netvisor id.
+     *
+     * @param int $id
+     * @return null|string
+     */
+    public function getSalesInvoice($id)
+    {
+        return $this->get(
+            'getsalesinvoice',
+            [
+                'netvisorkey' => $id,
+            ]
+        );
+    }
+
+    /**
+     * Set status for a sales invoice identified by Netvisor id.
+     *
+     * @param int $id
+     * @param string $status
+     * @return null|string
+     */
+    public function setSalesInvoiceStatus($id, $status)
+    {
+        return $this->get(
+            'updatesalesinvoicestatus',
+            [
+                'netvisorkey' => $id,
+                'status' => $status,
             ]
         );
     }
