@@ -91,14 +91,14 @@ class Netvisor
 	 * @return string|null
 	 * @throws \Xi\Netvisor\Exception\NetvisorException
 	 */
-	public function sendInvoice(SalesInvoice $invoice, bool $add = true, string $language = null): ?string
+	public function sendInvoice(SalesInvoice $invoice, string $language = null): ?string
 	{
 		return $this->requestWithBody(
 			$invoice,
-			"salesinvoice",
+			'salesinvoice',
 			[
-				"method" => $add ? "add" : "edit",
-				"id" => $add ? null : $invoice->netvisorkey
+				'method' => !empty($invoice->netvisorkey) ? 'edit' : 'add',
+				'id' => $invoice->netvisorkey ?? null
 			],
 			$language
 		);
@@ -109,9 +109,16 @@ class Netvisor
 	 *
 	 * @return null|string
 	 */
-	public function sendCustomer(Customer $customer, bool $add)
+	public function sendCustomer(Customer $customer)
 	{
-		return $this->requestWithBody($customer, 'customer', ['method' => $add ? 'add' : 'edit', 'id' => $add ? null : $customer->netvisorkey]);
+		return $this->requestWithBody(
+            $customer,
+            'customer',
+            [
+                'method' => !empty($customer->netvisorkey) ? 'edit' : 'add',
+                'id' => $customer->netvisorkey ?? null
+            ]
+        );
 	}
 
     /**
@@ -129,9 +136,12 @@ class Netvisor
 
         $request = new Request($this->client, $this->config);
 
-        return $request->get("deletecustomer", [
-            "customerid" => $id,
-        ]);
+        return $request->get(
+            'deletecustomer',
+            [
+                'customerid' => $id
+            ]
+        );
     }
 
 	/**
@@ -139,9 +149,16 @@ class Netvisor
 	 *
 	 * @return null|string
 	 */
-	public function sendProduct(Product $product, bool $add)
+	public function sendProduct(Product $product)
 	{
-		return $this->requestWithBody($product, 'product', ['method' => $add ? 'add' : 'edit', 'id' => $add ? null : $product->netvisorKey]);
+		return $this->requestWithBody(
+            $product,
+            'product',
+            [
+                'method' => !empty($product->netvisorKey) ? 'edit' : 'add',
+                'id' => $product->netvisorKey ?? null
+            ]
+        );
 	}
 
 	/**
@@ -152,7 +169,7 @@ class Netvisor
 	 */
 	public function sendWarehouseEvent(WarehouseEvent $warehouseEvent): ?string
 	{
-		return $this->requestWithBody($warehouseEvent, "warehouseevent");
+		return $this->requestWithBody($warehouseEvent, 'warehouseevent');
 	}
 
 	/**
@@ -163,7 +180,7 @@ class Netvisor
 	 */
 	public function sendSalesPayment(SalesPayment $salesPayment): ?string
 	{
-		return $this->requestWithBody($salesPayment, "salespayment");
+		return $this->requestWithBody($salesPayment, 'salespayment');
 	}
 
 	/**
@@ -189,21 +206,15 @@ class Netvisor
 	/**
 	 * List products, optionally filtered by a keyword.
 	 *
-	 * The keyword matches Netvisor fields
-	 * Name, Customer Code, Organization identifier, CoName
-	 *
 	 * @param null|string $keyword
 	 *
 	 * @return null|string
 	 */
 	public function getProducts($keyword = null)
 	{
-		return $this->get(
-			'productlist',
-			[
-				'keyword' => $keyword,
-			]
-		);
+		return $this->getProductsBy([
+            'keyword' => $keyword,
+        ]);
 	}
 
 	/**
@@ -217,7 +228,7 @@ class Netvisor
 	public function getProductsBy(array $params = [])
 	{
 		return $this->get(
-			"productlist",
+			'productlist',
 			$params
 		);
 	}
@@ -277,22 +288,6 @@ class Netvisor
 		);
 	}
 
-	/**
-	 * Get details for a product identified by Netvisor id.
-	 *
-	 * @param int $id
-	 *
-	 * @return null|string
-	 */
-	public function getProduct($id)
-	{
-		return $this->get(
-			'getproduct',
-			[
-				'id' => $id,
-			]
-		);
-	}
     /**
      * List invoices, optionally filtered by a keyword.
      *
@@ -342,24 +337,6 @@ class Netvisor
     }
 
     /**
-     * Set status for a sales invoice identified by Netvisor id.
-     *
-     * @param int $id
-     * @param string $status
-     * @return null|string
-     */
-    public function setSalesInvoiceStatus($id, $status)
-    {
-        return $this->get(
-            'updatesalesinvoicestatus',
-            [
-                'netvisorkey' => $id,
-                'status' => $status,
-            ]
-        );
-    }
-
-    /**
      * Get details for a product identified by Netvisor id.
      *
      * @param int $id
@@ -389,12 +366,12 @@ class Netvisor
 
 		if ($beginDate !== null)
 		{
-			$params["begininvoicedate"] = $beginDate->format("Y-m-d");
+			$params['begininvoicedate'] = $beginDate->format('Y-m-d');
 		}
 
 		if ($endDate !== null)
 		{
-			$params["endinvoicedate"] = $endDate->format("Y-m-d");
+			$params['endinvoicedate'] = $endDate->format('Y-m-d');
 		}
 
 		return $this->get(
@@ -430,7 +407,7 @@ class Netvisor
 	public function inventoryByWarehouse(array $params = []): ?string
 	{
 		return $this->get(
-			"inventorybywarehouse",
+			'inventorybywarehouse',
 			$params
 		);
 	}
@@ -445,22 +422,7 @@ class Netvisor
 	public function salesInvoiceList(array $params = []): ?string
 	{
 		return $this->get(
-			"salesinvoicelist",
-			$params
-		);
-	}
-
-	/**
-	 * Get details for a sales invoice identified by Netvisor key.
-	 *
-	 * @param array $params
-	 *
-	 * @return string|null
-	 */
-	public function getSalesInvoice(array $params = []): ?string
-	{
-		return $this->get(
-			"getsalesinvoice",
+			'salesinvoicelist',
 			$params
 		);
 	}
@@ -475,7 +437,7 @@ class Netvisor
 	public function getOrder(array $params = []): ?string
 	{
 		return $this->get(
-			"getorder",
+			'getorder',
 			$params
 		);
 	}
@@ -489,16 +451,15 @@ class Netvisor
 	 */
 	public function updateInvoiceStatus(int $id, string $status): ?string
 	{
-		if (!$this->config->isEnabled())
-		{
+		if (!$this->config->isEnabled()) {
 			return null;
 		}
 
 		$request = new Request($this->client, $this->config);
 
-		return $request->get("updatesalesinvoicestatus", [
-			"netvisorkey" => $id,
-			"status"      => $status,
+		return $request->get('updatesalesinvoicestatus', [
+			'netvisorkey' => $id,
+			'status'      => $status,
 		]);
 	}
 
@@ -517,8 +478,8 @@ class Netvisor
 
 		$request = new Request($this->client, $this->config);
 
-		return $request->get("deletesalesinvoice", [
-			"invoiceid" => $id,
+		return $request->get('deletesalesinvoice', [
+			'invoiceid' => $id,
 		]);
 	}
 
@@ -537,8 +498,8 @@ class Netvisor
 
 		$request = new Request($this->client, $this->config);
 
-		return $request->get("deletesalesinvoice", [
-			"orderid" => $id,
+		return $request->get('deletesalesinvoice', [
+			'orderid' => $id,
 		]);
 	}
 
@@ -548,7 +509,7 @@ class Netvisor
      */
     public function getPaymentTerms(): ?string
     {
-        return $this->get("paymenttermlist");
+        return $this->get('paymenttermlist');
     }
 
     /**
@@ -565,9 +526,9 @@ class Netvisor
     public function getExtendedProducts(?string $keyword = null): ?string
     {
         return $this->get(
-            "extendedproductlist",
+            'extendedproductlist',
             [
-                "keyword" => $keyword,
+                'keyword' => $keyword,
             ]
         );
     }
@@ -583,7 +544,7 @@ class Netvisor
     public function getExtendedProductsBy(array $params = []): ?string
     {
         return $this->get(
-            "extendedproductlist",
+            'extendedproductlist',
             $params
         );
     }
@@ -599,9 +560,9 @@ class Netvisor
     public function getExtendedProductsChangedSince(DateTime $changedSince): ?string
     {
         return $this->get(
-            "extendedproductlist",
+            'extendedproductlist',
             [
-                "productchangedsince" => $changedSince->format('Y-m-d'),
+                'productchangedsince' => $changedSince->format('Y-m-d'),
             ]
         );
     }

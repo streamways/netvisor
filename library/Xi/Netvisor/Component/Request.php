@@ -37,7 +37,7 @@ class Request
 
         $response = $this->client->request(
             'GET',
-            $url,
+            $this->encodeToUtf8($url),
             [
                 'headers' => $headers,
             ]
@@ -65,15 +65,15 @@ class Request
      */
     public function post($xml, $service, array $params = [])
     {
-        $url     = $this->createUrl($service, $params);
+        $url = $this->createUrl($service, $params);
         $headers = $this->createHeaders($url);
 
         $response = $this->client->request(
             'POST',
-            $url,
+            $this->encodeToUtf8($url),
             [
                 'headers' => $headers,
-                'body' => $xml,
+                'body' => $this->encodeToUtf8($xml),
             ]
         );
 
@@ -96,12 +96,15 @@ class Request
     private function createUrl($service, array $params = [])
     {
         $url = "{$this->config->getHost()}/{$service}.nv";
-
         $params = array_filter($params);
-        $queryString = http_build_query($params);
+        $queryParams = [];
 
-        if ($queryString) {
-            $url .= '?' . $queryString;
+        foreach ($params as $key => $value) {
+            $queryParams[] = $key . '=' . $value;
+        }
+
+        if (!empty($queryParams)) {
+            $url .= '?' . implode('&', $queryParams);
         }
 
         return $url;
@@ -159,7 +162,7 @@ class Request
             $this->config->getPartnerKey(),
         );
 
-        return md5(implode('&', $parameters));
+        return md5($this->encodeToIso(implode('&', $parameters)));
     }
 
     /**
@@ -183,5 +186,13 @@ class Request
         $timestamp->setTimezone(new \DateTimeZone('GMT'));
 
         return substr($timestamp->format('Y-m-d H:i:s.u'), 0, -3);
+    }
+
+    private function encodeToUtf8($string) {
+        return mb_convert_encoding($string, "UTF-8", mb_detect_encoding($string, "UTF-8, ISO-8859-1, ISO-8859-15", true));
+    }
+
+    private function encodeToIso($string) {
+        return mb_convert_encoding($string, "ISO-8859-15", mb_detect_encoding($string, "UTF-8, ISO-8859-1, ISO-8859-15", true));
     }
 }

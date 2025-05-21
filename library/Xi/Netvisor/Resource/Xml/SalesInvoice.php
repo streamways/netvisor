@@ -96,8 +96,7 @@ class SalesInvoice extends Root
 			$this->salesInvoiceAmount = new AttributeElement($salesInvoiceAmountData, ["iso4217currencycode" => "EUR"]);
 		}
 		$this->salesInvoiceStatus          = new AttributeElement($salesInvoiceStatus, ["type" => "netvisor"]);
-		$this->invoicingCustomerIdentifier = new AttributeElement($invoicingCustomerIdentifier,
-			["type" => "netvisor"]); // TODO: Type can be netvisor/customer.
+		$this->invoicingCustomerIdentifier = new AttributeElement($invoicingCustomerIdentifier, ["type" => "netvisor"]); // TODO: Type can be netvisor/customer.
 		$this->paymentTermNetDays          = $paymentTermNetDays;
 		$this->secondName                  = array_key_exists("secondName", $additionalFields)
 			? new AttributeElement($additionalFields["secondName"], ["type" => "netvisor"])

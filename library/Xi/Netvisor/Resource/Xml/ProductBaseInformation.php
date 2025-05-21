@@ -20,8 +20,8 @@ class ProductBaseInformation
 	private $purchasePrice;
 	private $tariffHeading;
 	private $comissionPercentage;
-	private $isActive;
-	private $isSalesProduct;
+	private $isActive = 1;
+	private $isSalesProduct = 1;
 	private $inventoryEnabled;
 	private $countyOfOrigin;
 

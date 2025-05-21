@@ -29,8 +29,9 @@ class Product extends Root
 	/**
 	 * Product constructor.
 	 */
-	public function __construct()
+	public function __construct(ProductBaseinformation $productBaseInformation)
 	{
+        $this->productBaseInformation = $productBaseInformation;
 	}
 
 	/**
