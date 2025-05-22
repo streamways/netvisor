@@ -129,11 +129,6 @@ class Netvisor
      */
     public function deleteCustomer(int $id): ?string
     {
-        if (!$this->config->isEnabled())
-        {
-            return null;
-        }
-
         $request = new Request($this->client, $this->config);
 
         return $request->get(
@@ -451,10 +446,6 @@ class Netvisor
 	 */
 	public function updateInvoiceStatus(int $id, string $status): ?string
 	{
-		if (!$this->config->isEnabled()) {
-			return null;
-		}
-
 		$request = new Request($this->client, $this->config);
 
 		return $request->get('updatesalesinvoicestatus', [
@@ -471,11 +462,6 @@ class Netvisor
 	 */
 	public function deleteSalesInvoice(int $id): ?string
 	{
-		if (!$this->config->isEnabled())
-		{
-			return null;
-		}
-
 		$request = new Request($this->client, $this->config);
 
 		return $request->get('deletesalesinvoice', [
@@ -491,11 +477,6 @@ class Netvisor
 	 */
 	public function deleteSalesOrder(int $id): ?string
 	{
-		if (!$this->config->isEnabled())
-		{
-			return null;
-		}
-
 		$request = new Request($this->client, $this->config);
 
 		return $request->get('deletesalesinvoice', [
