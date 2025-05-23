@@ -242,7 +242,7 @@ class Netvisor
 		return $this->get(
 			'customerlist',
 			[
-				'changedsince' => $changedSince->format('Y-m-d'),
+				'changedsince' => $changedSince->format('Y-m-d H:i:s'),
 			]
 		);
 	}
@@ -261,7 +261,7 @@ class Netvisor
 		return $this->get(
 			'productlist',
 			[
-				'changedsince' => $changedSince->format('Y-m-d'),
+				'changedsince' => $changedSince->format('Y-m-d H:i:s'),
 			]
 		);
 	}
@@ -310,7 +310,7 @@ class Netvisor
         return $this->get(
             'salesinvoicelist',
             [
-                'changedsince' => $changedSince->format('Y-m-d'),
+                'changedsince' => $changedSince->format('Y-m-d H:i:s'),
             ]
         );
     }
@@ -543,7 +543,7 @@ class Netvisor
         return $this->get(
             'extendedproductlist',
             [
-                'productchangedsince' => $changedSince->format('Y-m-d'),
+                'productchangedsince' => $changedSince->format('Y-m-d H:i:s'),
             ]
         );
     }
