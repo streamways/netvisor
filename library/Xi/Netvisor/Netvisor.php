@@ -11,6 +11,7 @@ use Xi\Netvisor\Component\Validate;
 use Xi\Netvisor\Exception\NetvisorException;
 use Xi\Netvisor\Resource\Xml\Component\Root;
 use Xi\Netvisor\Resource\Xml\Customer;
+use Xi\Netvisor\Resource\Xml\MatchCreditNote;
 use Xi\Netvisor\Resource\Xml\Product;
 use Xi\Netvisor\Resource\Xml\SalesInvoice;
 use Xi\Netvisor\Resource\Xml\SalesPayment;
@@ -545,6 +546,19 @@ class Netvisor
             [
                 'productchangedsince' => $changedSince->format('Y-m-d H:i:s'),
             ]
+        );
+    }
+
+    /**
+     * @param Customer $customer
+     *
+     * @return null|string
+     */
+    public function matchCreditNote(MatchCreditNote $matchCreditNote)
+    {
+        return $this->requestWithBody(
+            $matchCreditNote,
+            'matchcreditnote'
         );
     }
 

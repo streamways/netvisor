@@ -1,0 +1,18 @@
+<!DOCTYPE root [
+
+<!ELEMENT root (matchcreditnote)>
+<!ATTLIST root
+    xmlns CDATA #FIXED ''>
+
+<!ELEMENT matchcreditnote (creditnotenetvisorkey,invoicenetvisorkey)>
+<!ATTLIST matchcreditnote
+    xmlns CDATA #FIXED ''>
+
+<!ELEMENT creditnotenetvisorkey (#PCDATA)>
+<!ATTLIST creditnotenetvisorkey
+    xmlns CDATA #FIXED ''>
+
+<!ELEMENT invoicenetvisorkey (#PCDATA)>
+<!ATTLIST invoicenetvisorkey
+    xmlns CDATA #FIXED ''>
+]>
