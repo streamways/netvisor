@@ -311,7 +311,7 @@ class Netvisor
         return $this->get(
             'salesinvoicelist',
             [
-                'changedsince' => $changedSince->format('Y-m-d H:i:s'),
+                'lastmodifiedstart' => $changedSince->format('Y-m-d'),
             ]
         );
     }
