@@ -117,17 +117,22 @@ class Request
     private function createHeaders($url)
     {
         $authenticationTransactionId = $this->getAuthenticationTransactionId();
-        $authenticationTimestamp     = $this->getAuthenticationTimestamp();
+        $timestamp = \DateTime::createFromFormat('U.u', number_format(microtime(true), 6, '.', ''));
+        $timestamp->setTimezone(new \DateTimeZone('GMT'));
+
+        $authenticationTimestamp     = $this->getAuthenticationTimestamp($timestamp);
 
         return array(
             'X-Netvisor-Authentication-Sender'        => $this->config->getSender(),
             'X-Netvisor-Authentication-CustomerId'    => $this->config->getCustomerId(),
             'X-Netvisor-Authentication-PartnerId'     => $this->config->getPartnerId(),
             'X-Netvisor-Authentication-Timestamp'     => $authenticationTimestamp,
+            'X-Netvisor-Authentication-TimestampUnix' => $timestamp->getTimestamp(),
+            'X-Netvisor-Authentication-TransactionId' => $authenticationTransactionId,
             'X-Netvisor-Interface-Language'           => $this->config->getLanguage(),
             'X-Netvisor-Organisation-ID'              => $this->config->getOrganizationId(),
-            'X-Netvisor-Authentication-TransactionId' => $authenticationTransactionId,
-            'X-Netvisor-Authentication-MAC'           => $this->getAuthenticationMac($url, $authenticationTimestamp, $authenticationTransactionId)
+            "X-Netvisor-Authentication-MACHashCalculationAlgorithm" => "HMACSHA256",
+            'X-Netvisor-Authentication-MAC'           => $this->getAuthenticationMac($url, $timestamp, $authenticationTransactionId)
         );
     }
 
@@ -148,21 +153,29 @@ class Request
      * @param  string $authenticationTransactionId
      * @return string
      */
-    private function getAuthenticationMac($url, $authenticationTimestamp, $authenticationTransactionId)
+    private function getAuthenticationMac($url, $timestamp, $authenticationTransactionId)
     {
         $parameters = array(
             $url,
             $this->config->getSender(),
             $this->config->getCustomerId(),
-            $authenticationTimestamp,
+            $this->getAuthenticationTimestamp($timestamp),
             $this->config->getLanguage(),
             $this->config->getOrganizationId(),
             $authenticationTransactionId,
+            $timestamp->getTimestamp(),
             $this->config->getUserKey(),
-            $this->config->getPartnerKey(),
+            $this->config->getPartnerKey()
+        );
+        
+        $key = array(
+            $this->config->getUserKey(),
+            $this->config->getPartnerKey()
         );
 
-        return md5($this->encodeToIso(implode('&', $parameters)));
+        $key = array_map("strval", $key);
+        $parameters = array_map("strval", $parameters);
+        return hash_hmac("sha256", implode("&", $parameters), implode("&", $key));
     }
 
     /**
@@ -180,11 +193,8 @@ class Request
      *
      * @return string
      */
-    private function getAuthenticationTimestamp()
+    private function getAuthenticationTimestamp($timestamp)
     {
-        $timestamp = \DateTime::createFromFormat('U.u', number_format(microtime(true), 6, '.', ''));
-        $timestamp->setTimezone(new \DateTimeZone('GMT'));
-
         return substr($timestamp->format('Y-m-d H:i:s.u'), 0, -3);
     }
 
